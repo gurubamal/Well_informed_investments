@@ -1,2 +1,2 @@
 # Well_informed_investments
-Prompts for Stocks 
+Prompts for Stocks -- Best in Class
