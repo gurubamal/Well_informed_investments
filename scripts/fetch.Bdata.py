@@ -1,326 +1,283 @@
-import requests
-from bs4 import BeautifulSoup
 import pandas as pd
-import json
+import yfinance as yf
+from newsapi import NewsApiClient
+from alpha_vantage.timeseries import TimeSeries
+import finnhub
+from iexfinance.stocks import Stock
+from tiingo import TiingoClient
+import pandas_datareader.data as web
+import datetime
 import time
-from io import StringIO
-import warnings
 
-# Suppress warnings
-warnings.filterwarnings('ignore')
+# ============================
+# Replace the placeholders below with your actual API keys
+# ============================
 
-# Function to get NSE Live Equity Market Data
-def get_nse_live_equity_market():
-    session = requests.Session()
-    headers = {
-        "User-Agent": "Mozilla/5.0",
-        "Accept": "application/json",
-        "Referer": "https://www.nseindia.com/market-data/live-equity-market",
-    }
+ALPHA_VANTAGE_API_KEY = 'YOUR_ALPHA_VANTAGE_API_KEY'
+NEWSAPI_API_KEY = 'YOUR_NEWSAPI_API_KEY'
+FINNHUB_API_KEY = 'YOUR_FINNHUB_API_KEY'
+IEX_CLOUD_API_KEY = 'YOUR_IEX_CLOUD_API_KEY'
+TIINGO_API_KEY = 'YOUR_TIINGO_API_KEY'
+NASDAQ_DATA_LINK_API_KEY = 'YOUR_NASDAQ_DATA_LINK_API_KEY'
 
-    # Get cookies
-    session.get("https://www.nseindia.com", headers=headers, timeout=5)
-    time.sleep(1)  # Wait for a second
+# ============================
+# Functions to Fetch Data from Various APIs
+# ============================
 
-    # Fetch live equity data
-    url = "https://www.nseindia.com/api/equity-stockIndices?index=SECURITIES%20IN%20F%26O"
-    response = session.get(url, headers=headers, timeout=10)
+def get_yahoo_finance_data(tickers):
+    """
+    Fetch historical stock data using yfinance.
+    """
+    print("Fetching data from Yahoo Finance...")
+    data = {}
+    for ticker in tickers:
+        print(f"Fetching data for {ticker}...")
+        try:
+            stock = yf.Ticker(ticker)
+            df = stock.history(period="max")
+            if df.empty:
+                print(f"No data found for {ticker}.")
+                continue
+            df.reset_index(inplace=True)
+            # Remove timezone info from 'Date' column
+            if 'Date' in df.columns:
+                df['Date'] = df['Date'].dt.tz_localize(None)
+            df['Ticker'] = ticker
+            data[ticker] = df
+        except Exception as e:
+            print(f"Error fetching data for {ticker}: {e}")
+    return data
 
-    if response.status_code != 200:
-        print(f"Failed to fetch data. Status code: {response.status_code}")
-        print("Response text:", response.text)
-        response.raise_for_status()
+def get_alpha_vantage_data(tickers):
+    """
+    Fetch historical stock data using Alpha Vantage.
+    """
+    print("Fetching data from Alpha Vantage...")
+    ts = TimeSeries(key=ALPHA_VANTAGE_API_KEY, output_format='pandas')
+    data = {}
+    for ticker in tickers:
+        print(f"Fetching data for {ticker}...")
+        try:
+            df, meta_data = ts.get_daily(symbol=ticker, outputsize='full')
+            df.reset_index(inplace=True)
+            # Remove timezone info from 'date' column
+            if 'date' in df.columns:
+                df['date'] = pd.to_datetime(df['date']).dt.tz_localize(None)
+            df['Ticker'] = ticker
+            data[ticker] = df
+            time.sleep(12)  # Respect API rate limits
+        except Exception as e:
+            print(f"Error fetching data for {ticker}: {e}")
+    return data
 
+def get_finnhub_data(tickers):
+    """
+    Fetch stock data using Finnhub API.
+    """
+    print("Fetching data from Finnhub...")
+    finnhub_client = finnhub.Client(api_key=FINNHUB_API_KEY)
+    data = {}
+    for ticker in tickers:
+        print(f"Fetching data for {ticker}...")
+        try:
+            # Finnhub expects the stock symbol without exchange suffix
+            # Example: 'RELIANCE.NS' remains the same
+            res = finnhub_client.stock_candles(ticker, 'D', 0, int(time.time()))
+            if res['s'] != 'ok':
+                print(f"No data found for {ticker}.")
+                continue
+            df = pd.DataFrame(res)
+            df['t'] = pd.to_datetime(df['t'], unit='s')
+            df.rename(columns={'t': 'Date'}, inplace=True)
+            df['Ticker'] = ticker
+            data[ticker] = df
+            time.sleep(1)  # Respect API rate limits
+        except Exception as e:
+            print(f"Error fetching data for {ticker}: {e}")
+    return data
+
+def get_iex_cloud_data(tickers):
+    """
+    Fetch stock data using IEX Cloud API.
+    Note: IEX Cloud primarily supports US stocks.
+    """
+    print("Fetching data from IEX Cloud...")
+    data = {}
+    for ticker in tickers:
+        print(f"Fetching data for {ticker}...")
+        try:
+            stock = Stock(ticker, token=IEX_CLOUD_API_KEY)
+            df = stock.get_chart(range='max')
+            if df.empty:
+                print(f"No data found for {ticker}.")
+                continue
+            df.reset_index(inplace=True)
+            # Remove timezone info from 'date' column
+            if 'date' in df.columns:
+                df['date'] = pd.to_datetime(df['date']).dt.tz_localize(None)
+            df['Ticker'] = ticker
+            data[ticker] = df
+            time.sleep(0.1)  # Respect API rate limits
+        except Exception as e:
+            print(f"Error fetching data for {ticker}: {e}")
+    return data
+
+def get_tiingo_data(tickers):
+    """
+    Fetch historical stock data using Tiingo API.
+    """
+    print("Fetching data from Tiingo...")
+    config = {'session': True, 'api_key': TIINGO_API_KEY}
+    client = TiingoClient(config)
+    data = {}
+    for ticker in tickers:
+        print(f"Fetching data for {ticker}...")
+        try:
+            df = client.get_dataframe(ticker,
+                                      frequency='daily',
+                                      metric_name='adjClose',
+                                      startDate='2000-01-01',
+                                      endDate=datetime.datetime.now().strftime('%Y-%m-%d'))
+            df.reset_index(inplace=True)
+            # Remove timezone info from 'date' column
+            if 'date' in df.columns:
+                df['date'] = pd.to_datetime(df['date']).dt.tz_localize(None)
+            df['Ticker'] = ticker
+            data[ticker] = df
+        except Exception as e:
+            print(f"Error fetching data for {ticker}: {e}")
+    return data
+
+def get_nasdaq_data(tickers):
+    """
+    Fetch historical stock data using Nasdaq Data Link (formerly Quandl).
+    """
+    print("Fetching data from Nasdaq Data Link...")
+    data = {}
+    for ticker in tickers:
+        print(f"Fetching data for {ticker}...")
+        try:
+            # The ticker format for Nasdaq Data Link may vary; adjust accordingly
+            # Example: 'BSE/BOM500325' for Reliance Industries
+            df = web.DataReader(ticker, 'quandl', start='2000-01-01', api_key=NASDAQ_DATA_LINK_API_KEY)
+            df.reset_index(inplace=True)
+            # Remove timezone info from 'Date' column
+            if 'Date' in df.columns:
+                df['Date'] = pd.to_datetime(df['Date']).dt.tz_localize(None)
+            df['Ticker'] = ticker
+            data[ticker] = df
+        except Exception as e:
+            print(f"Error fetching data for {ticker}: {e}")
+    return data
+
+def get_market_news(keywords, from_date=None, to_date=None, language='en', page_size=100):
+    """
+    Fetch market news using NewsAPI.org.
+    """
+    print("Fetching market news...")
     try:
-        data = response.json()
-        # Extract the data
-        if 'data' in data:
-            df = pd.DataFrame(data['data'])
-            return df
-        else:
-            raise KeyError("Expected key 'data' not found in the JSON response.")
+        newsapi = NewsApiClient(api_key=NEWSAPI_API_KEY)
     except Exception as e:
-        print("An error occurred while processing the data:", e)
-        raise
+        print(f"Error initializing NewsAPI client: {e}")
+        return pd.DataFrame()
 
-# Function to get option chain data from NSE India
-def get_nse_option_chain(symbol='NIFTY'):
-    session = requests.Session()
-    headers = {
-        "User-Agent": "Mozilla/5.0",
-        "Accept": "*/*",
-        "Referer": "https://www.nseindia.com/option-chain",
-    }
-
-    # Get cookies
-    session.get("https://www.nseindia.com", headers=headers, timeout=5)
-    time.sleep(1)  # Wait for a second
-
-    # Fetch option chain data
-    url = f"https://www.nseindia.com/api/option-chain-indices?symbol={symbol}"
-    response = session.get(url, headers=headers, timeout=10)
-    if response.status_code != 200:
-        print(f"Failed to fetch option chain data. Status code: {response.status_code}")
-        response.raise_for_status()
-    data = response.json()
-
-    # Process data
-    records = data['records']['data']
-    options = []
-    for record in records:
-        ce_data = record.get('CE', {})
-        pe_data = record.get('PE', {})
-        if ce_data:
-            ce_data['Type'] = 'Call'
-            options.append(ce_data)
-        if pe_data:
-            pe_data['Type'] = 'Put'
-            options.append(pe_data)
-    df = pd.DataFrame(options)
+    all_articles = []
+    for keyword in keywords:
+        print(f"Fetching news for keyword: {keyword}...")
+        try:
+            articles = newsapi.get_everything(q=keyword,
+                                              from_param=from_date,
+                                              to=to_date,
+                                              language=language,
+                                              sort_by='publishedAt',
+                                              page_size=page_size)
+            if articles['status'] != 'ok':
+                print(f"Error fetching news for {keyword}: {articles.get('message', 'Unknown error')}")
+                continue
+            for article in articles['articles']:
+                article['Keyword'] = keyword
+                all_articles.append(article)
+            time.sleep(1)  # Respect API rate limits
+        except Exception as e:
+            print(f"Error fetching news for {keyword}: {e}")
+    df = pd.DataFrame(all_articles)
     return df
 
-# Function to get pre-open market data from NSE India
-def get_nse_pre_open_market_data():
-    session = requests.Session()
-    headers = {
-        "User-Agent": "Mozilla/5.0",
-        "Accept": "application/json",
-        "Referer": "https://www.nseindia.com/market-data/pre-open-market-cm-and-emerge",
-    }
+# ============================
+# Main Function
+# ============================
 
-    # Get cookies
-    session.get("https://www.nseindia.com", headers=headers, timeout=5)
-    time.sleep(1)  # Wait for a second
-
-    # Fetch pre-open market data
-    url = "https://www.nseindia.com/api/market-data-pre-open?key=ALL"
-    response = session.get(url, headers=headers, timeout=10)
-
-    if response.status_code != 200:
-        print(f"Failed to fetch pre-open market data from NSE India. Status code: {response.status_code}")
-        return pd.DataFrame()
-
-    try:
-        data = response.json()
-        if 'data' in data:
-            df = pd.DataFrame(data['data'])
-            return df
-        else:
-            print("No data found in pre-open market response.")
-            return pd.DataFrame()
-    except Exception as e:
-        print("An error occurred while processing pre-open market data:", e)
-        return pd.DataFrame()
-
-# Function to get historical data from NSE India
-def get_nse_historical_data():
-    print("NSE India does not provide historical data via a public API. Please visit the website to download historical data manually.")
-    return pd.DataFrame()
-
-# Function to get market headlines from Moneycontrol
-def get_moneycontrol_market_headlines():
-    url = "https://www.moneycontrol.com/news/business/markets/"
-    headers = {"User-Agent": "Mozilla/5.0"}
-    response = requests.get(url, headers=headers, timeout=10)
-
-    if response.status_code != 200:
-        print(f"Failed to fetch data from Moneycontrol. Status code: {response.status_code}")
-        return pd.DataFrame()
-
-    soup = BeautifulSoup(response.content, 'html.parser')
-
-    # Extract market headlines
-    headlines = soup.find_all('h2', class_='clearfix')
-
-    data = []
-    for headline in headlines:
-        title = headline.get_text(strip=True)
-        data.append({'Headline': title})
-
-    df = pd.DataFrame(data)
-    return df
-
-# Function to get market data from Business Standard
-def get_business_standard_markets():
-    url = "https://www.business-standard.com/markets"
-    headers = {"User-Agent": "Mozilla/5.0"}
-    response = requests.get(url, headers=headers, timeout=10)
-
-    if response.status_code != 200:
-        print(f"Failed to fetch data from Business Standard. Status code: {response.status_code}")
-        return pd.DataFrame()
-
-    soup = BeautifulSoup(response.content, 'html.parser')
-
-    # Extract market headlines
-    headlines = soup.find_all('h2', class_='listing-txt')
-
-    data = []
-    for headline in headlines:
-        title = headline.get_text(strip=True)
-        data.append({'Headline': title})
-
-    df = pd.DataFrame(data)
-    return df
-
-# Function to get market data from India Infoline
-def get_india_infoline_markets():
-    url = "https://www.indiainfoline.com/markets"
-    headers = {"User-Agent": "Mozilla/5.0"}
-    response = requests.get(url, headers=headers, timeout=10)
-
-    if response.status_code != 200:
-        print(f"Failed to fetch data from India Infoline. Status code: {response.status_code}")
-        return pd.DataFrame()
-
-    soup = BeautifulSoup(response.content, 'html.parser')
-
-    # Extract market news headlines
-    news_items = soup.find_all('div', class_='NewsHead')
-
-    data = []
-    for item in news_items:
-        title = item.get_text(strip=True)
-        data.append({'News': title})
-
-    df = pd.DataFrame(data)
-    return df
-
-# Function to get market data from Reuters
-def get_reuters_markets():
-    url = "https://in.reuters.com/finance/markets"
-    headers = {"User-Agent": "Mozilla/5.0"}
-    response = requests.get(url, headers=headers, timeout=10)
-
-    if response.status_code != 200:
-        print(f"Failed to fetch data from Reuters. Status code: {response.status_code}")
-        return pd.DataFrame()
-
-    soup = BeautifulSoup(response.content, 'html.parser')
-
-    # Extract market headlines
-    headlines = soup.find_all('h2', class_='story-title')
-
-    data = []
-    for headline in headlines:
-        title = headline.get_text(strip=True)
-        data.append({'Headline': title})
-
-    df = pd.DataFrame(data)
-    return df
-
-# Function to get market data from BQ Prime
-def get_bqprime_markets():
-    url = "https://www.bqprime.com/markets"
-    headers = {"User-Agent": "Mozilla/5.0"}
-    response = requests.get(url, headers=headers, timeout=10)
-
-    if response.status_code != 200:
-        print(f"Failed to fetch data from BQ Prime. Status code: {response.status_code}")
-        return pd.DataFrame()
-
-    soup = BeautifulSoup(response.content, 'html.parser')
-
-    # Extract market news headlines
-    news_items = soup.find_all('h3', class_='card-headline')
-
-    data = []
-    for item in news_items:
-        title = item.get_text(strip=True)
-        data.append({'News': title})
-
-    df = pd.DataFrame(data)
-    return df
-
-# Main function to compile data
 def main():
-    writer = pd.ExcelWriter('Market_Data.xlsx', engine='openpyxl')
+    # Define the tickers and keywords you are interested in
+    tickers_yahoo = ['RELIANCE.NS', 'TCS.NS', '^NSEI']  # Yahoo Finance tickers for Indian stocks and index
+    tickers_alpha = ['RELIANCE.BSE', 'TCS.BSE']         # Alpha Vantage tickers for Indian stocks
+    tickers_finnhub = ['RELIANCE.NS', 'TCS.NS']        # Finnhub uses Yahoo Finance symbols
+    tickers_iex = ['AAPL', 'MSFT']                      # IEX Cloud primarily supports US stocks
+    tickers_tiingo = ['AAPL', 'MSFT']                   # Tiingo primarily supports US stocks
+    tickers_nasdaq = ['BSE/BOM500325', 'BSE/BOM532540']  # Nasdaq Data Link tickers for Indian stocks (example)
 
-    # NSE Live Equity Market Data
-    try:
-        df_nse_live = get_nse_live_equity_market()
-        df_nse_live.to_excel(writer, sheet_name='NSE Live Equity', index=False)
-        print("NSE Live Equity Market Data fetched successfully.")
-    except Exception as e:
-        print(f"Failed to fetch NSE Live Equity Market Data: {e}")
+    keywords = ['Stock Market', 'NSE India', 'Sensex', 'Nifty 50']
 
-    # NSE Option Chain Data
-    try:
-        df_option_chain = get_nse_option_chain()
-        df_option_chain.to_excel(writer, sheet_name='NSE Option Chain', index=False)
-        print("NSE Option Chain Data fetched successfully.")
-    except Exception as e:
-        print(f"Failed to fetch NSE Option Chain Data: {e}")
+    # Create a Pandas Excel writer using OpenPyXL as the engine within a context manager
+    with pd.ExcelWriter('Market_Data.xlsx', engine='openpyxl') as writer:
+        # Fetch data from Yahoo Finance
+        yahoo_data = get_yahoo_finance_data(tickers_yahoo)
+        for ticker, df in yahoo_data.items():
+            sheet_name = f'Yahoo_{ticker.replace(".NS", "").replace("^", "")}'
+            df.to_excel(writer, sheet_name=sheet_name, index=False)
+            print(f"Data for {ticker} written to sheet '{sheet_name}'.")
 
-    # NSE Pre-Open Market Data
-    try:
-        df_pre_open = get_nse_pre_open_market_data()
-        if not df_pre_open.empty:
-            df_pre_open.to_excel(writer, sheet_name='NSE Pre-Open Market', index=False)
-            print("NSE Pre-Open Market Data fetched successfully.")
+        # Fetch data from Alpha Vantage
+        alpha_data = get_alpha_vantage_data(tickers_alpha)
+        for ticker, df in alpha_data.items():
+            sheet_name = f'AlphaVantage_{ticker.replace(".BSE", "")}'
+            df.to_excel(writer, sheet_name=sheet_name, index=False)
+            print(f"Data for {ticker} written to sheet '{sheet_name}'.")
+
+        # Fetch data from Finnhub
+        finnhub_data = get_finnhub_data(tickers_finnhub)
+        for ticker, df in finnhub_data.items():
+            sheet_name = f'Finnhub_{ticker.replace(".NS", "")}'
+            df.to_excel(writer, sheet_name=sheet_name, index=False)
+            print(f"Data for {ticker} written to sheet '{sheet_name}'.")
+
+        # Fetch data from IEX Cloud (if applicable)
+        iex_data = get_iex_cloud_data(tickers_iex)
+        for ticker, df in iex_data.items():
+            sheet_name = f'IEX_{ticker}'
+            df.to_excel(writer, sheet_name=sheet_name, index=False)
+            print(f"Data for {ticker} written to sheet '{sheet_name}'.")
+
+        # Fetch data from Tiingo (if applicable)
+        tiingo_data = get_tiingo_data(tickers_tiingo)
+        for ticker, df in tiingo_data.items():
+            sheet_name = f'Tiingo_{ticker}'
+            df.to_excel(writer, sheet_name=sheet_name, index=False)
+            print(f"Data for {ticker} written to sheet '{sheet_name}'.")
+
+        # Fetch data from Nasdaq Data Link (formerly Quandl) (if applicable)
+        nasdaq_data = get_nasdaq_data(tickers_nasdaq)
+        for ticker, df in nasdaq_data.items():
+            sheet_name = f'Nasdaq_{ticker.replace("BSE/", "")}'
+            df.to_excel(writer, sheet_name=sheet_name, index=False)
+            print(f"Data for {ticker} written to sheet '{sheet_name}'.")
+
+        # Fetch market news
+        news_df = get_market_news(keywords)
+        if not news_df.empty:
+            # Remove timezone info from 'publishedAt' column
+            if 'publishedAt' in news_df.columns:
+                news_df['publishedAt'] = pd.to_datetime(news_df['publishedAt']).dt.tz_localize(None)
+            news_df.to_excel(writer, sheet_name='Market_News', index=False)
+            print("Market news written to sheet 'Market_News'.")
         else:
-            print("No data fetched from NSE Pre-Open Market.")
-    except Exception as e:
-        print(f"Failed to fetch NSE Pre-Open Market Data: {e}")
+            print("No market news data fetched.")
 
-    # Moneycontrol Market Headlines
-    try:
-        df_moneycontrol = get_moneycontrol_market_headlines()
-        if not df_moneycontrol.empty:
-            df_moneycontrol.to_excel(writer, sheet_name='Moneycontrol Headlines', index=False)
-            print("Moneycontrol Market Headlines fetched successfully.")
-        else:
-            print("No data fetched from Moneycontrol.")
-    except Exception as e:
-        print(f"Failed to fetch Moneycontrol Market Headlines: {e}")
+    print("All data has been written to 'Market_Data.xlsx'.")
 
-    # Business Standard Data
-    try:
-        df_business_standard = get_business_standard_markets()
-        if not df_business_standard.empty:
-            df_business_standard.to_excel(writer, sheet_name='Business Standard', index=False)
-            print("Business Standard Data fetched successfully.")
-        else:
-            print("No data fetched from Business Standard.")
-    except Exception as e:
-        print(f"Failed to fetch Business Standard Data: {e}")
-
-    # India Infoline Data
-    try:
-        df_india_infoline = get_india_infoline_markets()
-        if not df_india_infoline.empty:
-            df_india_infoline.to_excel(writer, sheet_name='India Infoline', index=False)
-            print("India Infoline Data fetched successfully.")
-        else:
-            print("No data fetched from India Infoline.")
-    except Exception as e:
-        print(f"Failed to fetch India Infoline Data: {e}")
-
-    # Reuters Data
-    try:
-        df_reuters = get_reuters_markets()
-        if not df_reuters.empty:
-            df_reuters.to_excel(writer, sheet_name='Reuters Markets', index=False)
-            print("Reuters Data fetched successfully.")
-        else:
-            print("No data fetched from Reuters.")
-    except Exception as e:
-        print(f"Failed to fetch Reuters Data: {e}")
-
-    # BQ Prime Data
-    try:
-        df_bqprime = get_bqprime_markets()
-        if not df_bqprime.empty:
-            df_bqprime.to_excel(writer, sheet_name='BQ Prime', index=False)
-            print("BQ Prime Data fetched successfully.")
-        else:
-            print("No data fetched from BQ Prime.")
-    except Exception as e:
-        print(f"Failed to fetch BQ Prime Data: {e}")
-
-    # Close the writer
-    writer.close()
-    print("Data saved to Market_Data.xlsx")
+# ============================
+# Entry Point
+# ============================
 
 if __name__ == "__main__":
     main()
