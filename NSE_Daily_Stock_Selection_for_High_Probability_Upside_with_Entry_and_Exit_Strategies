@@ -1,0 +1,370 @@
+**Title: NSE Daily Stock Selection for High Probability Upside with Entry and Exit Strategies**
+
+---
+
+**Instructions:**
+
+- **Role Play:** Assume the role of a seasoned financial analyst with extensive experience in short-term stock trading and market analysis.
+
+- **Objective:** Identify today's **8 best stocks** that have a high probability of increasing in value during the trading day, and provide precise calculations on the optimal times to **enter (buy)** and **exit (sell)** these stocks.
+
+- **Data Sources:** Utilize all available and reputable online resources, including real-time market data, financial news outlets, economic calendars, technical analysis platforms, social media sentiment analysis tools, global market trends, geopolitical events, and any other relevant information.
+
+- **Focus Note:** Concentrate on immediate factors that could impact stock prices today. Consider pre-market indicators, breaking news, technical indicators, market sentiment, economic indicators, industry trends, analyst recommendations, insider activity, institutional holdings, and other relevant factors.
+
+- **Comprehensive Analysis:** Apply the best possible logic, knowledge, and trends. Include all possible factors that the market, the world, and people consider when evaluating stocks.
+
+- **Entry and Exit Strategies:** Provide precise calculations and analysis to determine the optimal entry (buy) points and exit (sell) points for each stock. Utilize technical analysis tools such as support and resistance levels, Fibonacci retracements, moving averages, and other relevant indicators.
+
+- **Format Adherence:** Strictly adhere to the format provided below.
+
+- **Data Presentation:** Include **maximum data in tables** wherever possible to make the analysis easy to use. Ensure that all financial metrics, technical indicators, market mood assessments, entry and exit calculations, and analyses are presented with clear headings and labels.
+
+- **Comprehensive Metrics:** Incorporate technical indicators and trading signals relevant to intraday trading, such as **Relative Strength Index (RSI)**, **Moving Averages (MA)**, **Volume Analysis**, **Bollinger Bands**, **Stochastic Oscillator**, **Support and Resistance Levels**, **Candlestick Patterns**, **Market Mood Index**, **Fear and Greed Index**, **Institutional Buying/Selling**, **Insider Trading Activity**, **Short Interest**, **Options Activity**, and other pertinent indicators.
+
+- **Market Mood and Other Factors:** Include detailed assessments of market mood, investor sentiment, economic indicators, geopolitical events, and any other factors that could influence the stocks' intraday performance. Apply the best possible logic in analyzing these factors.
+
+- **Evaluation and Scoring:**
+  - Assign numerical values to evaluations: **Positive = +1**, **Neutral = 0**, **Negative = -1**.
+  - Apply these scores to all measurable items in the tables.
+  - **Calculation of Confidence Level:**
+    - **Total Score:** Sum all the individual scores for each stock.
+    - **Maximum Possible Score:** Total number of evaluations per stock multiplied by +1.
+    - **Confidence Percentage:** Calculate the percentage confidence for each stock using the formula:
+
+      \[
+      \text{Confidence Percentage} = \left( \frac{\text{Total Score} + \text{Maximum Possible Score}}{2 \times \text{Maximum Possible Score}} \right) \times 100\%
+      \]
+
+    - **Interpretation:**
+      - **Confidence Percentage > 80%:** Very strong candidate for potential upside.
+      - **Confidence Percentage between 60% and 80%:** Strong candidate.
+      - **Confidence Percentage between 40% and 60%:** Moderate candidate.
+      - **Confidence Percentage below 40%:** Low probability of upside.
+    - Apply the best possible reasoning to interpret the confidence percentage and conclude whether each stock is a good short-term investment opportunity.
+
+---
+
+**Format:**
+
+### **Step 1: Market Overview**
+
+#### **1.1 Global Market Analysis**
+
+- **Summary:**
+  - Analyze global indices (e.g., S&P 500, Dow Jones, Nasdaq, FTSE 100, Nikkei 225, Shanghai Composite) and futures markets to determine the overall global market direction.
+  - Consider major economic news, geopolitical events, commodity prices (e.g., oil, gold), currency fluctuations (e.g., USD, EUR, JPY), and macroeconomic indicators.
+- **Evaluation:**
+  - Assess the global market sentiment as **Positive (+1)**, **Neutral (0)**, or **Negative (-1)**.
+- **Score:** Record the assigned score.
+
+#### **1.2 Domestic Market Analysis**
+
+- **Summary:**
+  - Analyze domestic market indices and futures to determine the local market direction.
+  - Consider domestic economic indicators, political events, and policy changes.
+- **Evaluation:**
+  - Assess the domestic market sentiment as **Positive (+1)**, **Neutral (0)**, or **Negative (-1)**.
+- **Score:** Record the assigned score.
+
+#### **1.3 Overall Market Mood**
+
+- **Summary:**
+  - Utilize market mood indices such as the **Fear and Greed Index**, **VIX (Volatility Index)**, and investor sentiment surveys.
+  - Analyze social media trends, news headlines, and public sentiment.
+- **Evaluation:**
+  - Assess the overall market mood as **Positive (+1)**, **Neutral (0)**, or **Negative (-1)**.
+- **Score:** Record the assigned score.
+
+---
+
+### **Step 2: Sector Analysis**
+
+#### **2.1 Sector Performance**
+
+- **Process:**
+  - Identify sectors showing strong pre-market or early trading performance.
+  - Use sector indices, ETFs, and industry news to gauge sector momentum.
+- **Evaluation:**
+  - Assess each promising sector's performance as **Positive (+1)**, **Neutral (0)**, or **Negative (-1)**.
+- **Score:** Assign scores to sectors to help select stocks within them.
+
+#### **2.2 Top Performing Sectors**
+
+- **Table of Top Sectors:**
+
+  | **Sector**          | **Pre-Market Change (%)** | **Key Drivers**                           | **Evaluation** | **Score** |
+  |---------------------|---------------------------|-------------------------------------------|----------------|-----------|
+  | Technology          | +2.5%                     | Strong earnings reports, innovation news  | Positive       | +1        |
+  | Healthcare          | +2.0%                     | Drug approvals, M&A activity              | Positive       | +1        |
+  | Consumer Discretionary | +1.8%                 | Increased consumer spending data          | Positive       | +1        |
+  | Energy              | -0.5%                     | Decline in oil prices                     | Negative       | -1        |
+
+---
+
+### **Step 3: Stock Screening and Selection**
+
+#### **3.1 Screening Criteria**
+
+- **Process:**
+  - Use real-time stock screeners to filter stocks based on the following criteria:
+    - **Pre-Market Gainers**
+    - **High Trading Volume**
+    - **Positive News Catalysts**
+    - **Technical Strength**
+    - **Institutional Activity**
+    - **Insider Trading Activity**
+    - **Options Activity**
+    - **Low Short Interest**
+    - **Market Sentiment**
+
+#### **3.2 Top 8 Stocks List**
+
+- **Table of Top Stocks:**
+
+  | **Stock Ticker** | **Company Name**      | **Sector**     | **Pre-Market Change (%)** | **Volume** | **Reason for Selection**                              |
+  |------------------|-----------------------|----------------|---------------------------|------------|-------------------------------------------------------|
+  | AAPL             | Apple Inc.            | Technology     | +3.5%                     | High       | Strong earnings beat, positive guidance               |
+  | AMZN             | Amazon.com, Inc.      | Consumer Discretionary | +4.0%           | High       | Impressive sales growth, new product launch           |
+  | MSFT             | Microsoft Corporation | Technology     | +3.2%                     | High       | Cloud revenue surge, favorable analyst upgrades       |
+  | JNJ              | Johnson & Johnson     | Healthcare     | +2.8%                     | Moderate   | Successful vaccine trial results                      |
+  | TSLA             | Tesla, Inc.           | Consumer Discretionary | +5.0%        | High       | Record vehicle deliveries, expansion plans            |
+  | NVDA             | NVIDIA Corporation    | Technology     | +4.5%                     | High       | Strong demand for GPUs, AI advancements               |
+  | PFE              | Pfizer Inc.           | Healthcare     | +3.0%                     | Moderate   | FDA approval of new drug, positive pipeline outlook   |
+  | GOOGL            | Alphabet Inc.         | Communication Services | +3.7%        | High       | Advertising revenue growth, stock buyback announcement|
+
+---
+
+### **Step 4: Detailed Analysis of Top Stocks**
+
+Perform the following analysis for each stock listed in Step 3.2.
+
+#### **Stock Analysis Template**
+
+#### **[Stock Ticker] - [Company Name]**
+
+---
+
+##### **4.1 Technical Analysis**
+
+- **Price Trend Analysis:**
+  - **Summary:**
+    - Analyze recent price movements over the past few days to weeks.
+    - Identify short-term trends (uptrend, downtrend, consolidation).
+    - Examine price relative to key moving averages (e.g., 50-day, 200-day MA).
+  - **Evaluation:**
+    - Trend is **Positive (+1)** if upward, **Neutral (0)** if sideways, **Negative (-1)** if downward.
+  - **Score:** Record the assigned score.
+
+- **Key Technical Indicators:**
+
+  | **Indicator**                 | **Value**          | **Signal**                    | **Evaluation**            | **Score** |
+  |-------------------------------|--------------------|-------------------------------|---------------------------|-----------|
+  | **Relative Strength Index (RSI)** | X                   | Overbought/Oversold/Neutral     | Positive/Neutral/Negative | +1/0/-1   |
+  | **Moving Average (50-day)**   | X                   | Price Above/Below MA           | Positive/Neutral/Negative | +1/0/-1   |
+  | **Moving Average (200-day)**  | X                   | Price Above/Below MA           | Positive/Neutral/Negative | +1/0/-1   |
+  | **MACD**                      | Positive/Negative Crossover | Bullish/Bearish Signal | Positive/Neutral/Negative | +1/0/-1   |
+  | **Volume Trend**              | Increasing/Decreasing | Indicates Buying/Selling Interest | Positive/Neutral/Negative | +1/0/-1   |
+  | **Bollinger Bands**           | Price Near Upper/Lower Band | Momentum Indicator       | Positive/Neutral/Negative | +1/0/-1   |
+  | **Stochastic Oscillator**     | X                   | Overbought/Oversold            | Positive/Neutral/Negative | +1/0/-1   |
+  | **Support Level**             | $X                  | Price Above/Below Support      | Positive/Neutral/Negative | +1/0/-1   |
+  | **Resistance Level**          | $X                  | Price Approaching Resistance   | Positive/Neutral/Negative | +1/0/-1   |
+  | **Candlestick Patterns**      | Pattern Identified  | Bullish/Bearish Signal         | Positive/Neutral/Negative | +1/0/-1   |
+  | **Market Mood Index**         | X                   | High/Low Confidence            | Positive/Neutral/Negative | +1/0/-1   |
+
+- **Total Technical Score:** Sum of scores.
+
+##### **4.2 Entry and Exit Strategy**
+
+- **Optimal Entry Point (Buy):**
+  - **Calculation:**
+    - Identify key support levels, Fibonacci retracement levels, and moving averages that indicate a strong entry point.
+    - Use pre-market low, previous day's close, or intraday support as potential entry prices.
+  - **Recommended Entry Price:** $X.XX
+  - **Evaluation:**
+    - Entry point is **Favorable (+1)** if at strong support or breakout level, **Neutral (0)**, **Unfavorable (-1)** if risky.
+  - **Score:** Record the assigned score.
+
+- **Optimal Exit Point (Sell):**
+  - **Calculation:**
+    - Identify key resistance levels, price targets based on technical patterns, or percentage gain objectives.
+    - Use previous highs, Fibonacci extensions, or analyst target prices.
+  - **Recommended Exit Price:** $X.XX
+  - **Evaluation:**
+    - Exit point is **Realistic (+1)** if achievable within the day, **Neutral (0)**, **Unrealistic (-1)** if unlikely.
+  - **Score:** Record the assigned score.
+
+- **Risk-Reward Ratio:**
+  - **Calculation:**
+    - Determine potential upside (Exit Price - Entry Price) and downside (Entry Price - Stop-Loss Level).
+    - Calculate the ratio of potential reward to potential risk.
+  - **Recommended Stop-Loss Level:** $X.XX
+  - **Risk-Reward Ratio:** X:1
+  - **Evaluation:**
+    - Ratio is **Favorable (+1)** if greater than 2:1, **Neutral (0)** if between 1:1 and 2:1, **Unfavorable (-1)** if less than 1:1.
+  - **Score:** Record the assigned score.
+
+##### **4.3 Fundamental Catalysts**
+
+- **Recent News and Events:**
+  - **Summary:**
+    - Highlight positive news such as earnings beats, product launches, M&A activity, or industry accolades.
+    - Consider insider buying or significant institutional investments.
+  - **Evaluation:**
+    - News impact is **Positive (+1)**, **Neutral (0)**, or **Negative (-1)**.
+  - **Score:** Record the assigned score.
+
+- **Upcoming Events:**
+  - **Summary:**
+    - Note any scheduled events for today (e.g., earnings calls, product announcements, investor conferences).
+  - **Evaluation:**
+    - Potential impact is **Positive (+1)** if likely favorable, **Neutral (0)**, **Negative (-1)** if potentially unfavorable.
+  - **Score:** Record the assigned score.
+
+- **Analyst Recommendations:**
+  - **Summary:**
+    - Review recent analyst upgrades, downgrades, and price target changes.
+    - Consider consensus rating and target price relative to current price.
+  - **Evaluation:**
+    - Analyst sentiment is **Positive (+1)** if upgrades or positive coverage, **Neutral (0)**, **Negative (-1)** if downgrades.
+  - **Score:** Record the assigned score.
+
+- **Institutional Activity:**
+  - **Summary:**
+    - Analyze recent filings for increases in institutional holdings.
+    - Consider significant hedge fund or mutual fund investments.
+  - **Evaluation:**
+    - Institutional activity is **Positive (+1)** if increasing holdings, **Neutral (0)**, **Negative (-1)** if decreasing.
+  - **Score:** Record the assigned score.
+
+- **Insider Trading Activity:**
+  - **Summary:**
+    - Examine recent insider purchases or sales.
+  - **Evaluation:**
+    - Insider activity is **Positive (+1)** if purchases outweigh sales, **Neutral (0)**, **Negative (-1)** if sales outweigh purchases.
+  - **Score:** Record the assigned score.
+
+##### **4.4 Market Sentiment**
+
+- **Social Media Sentiment:**
+  - **Summary:**
+    - Analyze sentiment from platforms like Twitter, Reddit, StockTwits.
+    - Consider volume and positivity of mentions.
+  - **Evaluation:**
+    - Sentiment is **Positive (+1)** if bullish, **Neutral (0)**, **Negative (-1)** if bearish.
+  - **Score:** Record the assigned score.
+
+- **Options Activity:**
+  - **Summary:**
+    - Identify unusual options activity indicating bullish sentiment (e.g., high volume of call options).
+  - **Evaluation:**
+    - Options activity is **Positive (+1)** if bullish, **Neutral (0)**, **Negative (-1)** if bearish.
+  - **Score:** Record the assigned score.
+
+- **Short Interest:**
+  - **Summary:**
+    - Assess the level of short interest relative to average trading volume.
+    - Decreasing short interest is a positive sign.
+  - **Evaluation:**
+    - Short interest is **Positive (+1)** if low or decreasing, **Neutral (0)**, **Negative (-1)** if high or increasing.
+  - **Score:** Record the assigned score.
+
+##### **4.5 Risk Assessment**
+
+- **Identify Risks:**
+  - **Summary:**
+    - Consider factors like market volatility, sector-specific risks, company-specific issues, legal or regulatory challenges.
+    - Assess potential impact of geopolitical events or economic data releases.
+  - **Evaluation:**
+    - Risks are **Negative (-1)** if significant, **Neutral (0)** if minimal.
+  - **Score:** Sum of risk scores.
+
+##### **4.6 Final Evaluation for [Stock Ticker]**
+
+- **Score Summary:**
+
+  | **Section**                 | **Score** |
+  |-----------------------------|-----------|
+  | **Technical Analysis**      | Total     |
+  | **Entry and Exit Strategy** | Total     |
+  | **Fundamental Catalysts**   | Total     |
+  | **Market Sentiment**        | Total     |
+  | **Risk Assessment**         | Total     |
+  | **Total Score**             | **Sum**   |
+
+- **Maximum Possible Score:** Number of evaluations × (+1)
+
+- **Confidence Percentage:**
+
+  \[
+  \text{Confidence Percentage} = \left( \frac{\text{Total Score} + \text{Maximum Possible Score}}{2 \times \text{Maximum Possible Score}} \right) \times 100\%
+  \]
+
+- **Interpretation:**
+  - Based on the confidence percentage, determine if the stock is a **Very Strong**, **Strong**, **Moderate**, or **Low** candidate for potential upside.
+
+---
+
+Repeat the **Stock Analysis Template** for each stock in the Top 8 Stocks List.
+
+---
+
+### **Step 5: Ranking and Recommendations**
+
+#### **5.1 Rank Stocks**
+
+- **Ranking Table:**
+
+  | **Rank** | **Stock Ticker** | **Company Name**      | **Confidence Percentage** | **Recommended Entry Price** | **Recommended Exit Price** | **Recommendation** |
+  |----------|------------------|-----------------------|---------------------------|-----------------------------|----------------------------|--------------------|
+  | 1        | [Stock Ticker]   | [Company Name]        | [Confidence %]            | $X.XX                       | $X.XX                      | [Recommendation]   |
+  | 2        |                  |                       |                           |                             |                            |                    |
+  | 3        |                  |                       |                           |                             |                            |                    |
+  | 4        |                  |                       |                           |                             |                            |                    |
+  | 5        |                  |                       |                           |                             |                            |                    |
+  | 6        |                  |                       |                           |                             |                            |                    |
+  | 7        |                  |                       |                           |                             |                            |                    |
+  | 8        |                  |                       |                           |                             |                            |                    |
+
+#### **5.2 Top Recommendations**
+
+- **Summary:**
+  - Highlight the top-ranked stocks with the highest confidence percentages.
+  - Provide brief reasons for their rankings based on the analysis.
+  - Include recommended entry and exit prices along with expected returns.
+
+---
+
+### **Conclusion**
+
+#### **Summary of Key Findings:**
+
+- **Global Market Sentiment:** Overall global market sentiment is [Positive/Neutral/Negative], influenced by [key factors].
+- **Domestic Market Sentiment:** Domestic market indicators show a [Positive/Neutral/Negative] outlook due to [reasons].
+- **Market Mood:** Investor mood is [Bullish/Bearish/Neutral], as indicated by [indices and sentiment measures].
+- **Sector Performance:** The [Top Sectors] are showing strong performance driven by [factors].
+- **Top Stocks:** [List top stocks] exhibit strong technical indicators, positive news catalysts, favorable market sentiment, and minimal risks.
+
+#### **Final Recommendations:**
+
+- **[Recommendation Level] Recommendations:**
+  - **[Stock Ticker] - [Company Name]**
+    - **Recommended Entry Price:** $X.XX
+    - **Recommended Exit Price:** $X.XX
+    - **Expected Return:** X%
+    - **Risk-Reward Ratio:** X:1
+    - **Reasoning:** Summarize key points that support the recommendation.
+
+---
+
+### **Disclaimer**
+
+- **Note:**
+  - This analysis is for informational purposes only and should not be considered financial advice.
+  - Stock markets are subject to risks and uncertainties.
+  - Past performance is not indicative of future results.
+  - Always conduct your own due diligence or consult a financial advisor before making investment decisions.
+
+---
+
+**Note:** Utilize all best possible online resources to gather accurate and up-to-date information. Apply the best possible logic and reasoning to ensure the most precise results. Include all relevant factors such as trends, news, market conditions, global events, investor sentiment, and any other information that could impact stock performance today. Provide precise calculations on the optimal times to **buy** and **sell** these stocks, considering all technical and fundamental factors.
