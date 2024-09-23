@@ -1,0 +1,252 @@
+**Title: One-Week Investment Analysis of  <Company Name>**
+
+---
+
+**Instructions:**
+
+- **Role Play:** Assume the role of a seasoned financial analyst with extensive experience in ultra-short-term stock trading (one-week period).
+
+- **Detailed Analysis:** Execute a thorough analysis as a professional analyst would, meticulously addressing each step without providing a general framework.
+
+- **Best Judgment:** Utilize your best judgment in all analyses, disregarding any capability limitations.
+
+- **Data Sources:** Base your analysis on the most reliable and up-to-date publicly available data accessible to you, such as intraday market trends, technical indicators, recent news, earnings reports, and reputable financial news outlets. Disregard the need for any specific financial data that isn't accessible.
+
+- **Focus Note:** Concentrate on ultra-short-term factors that could impact the stock price within the next week. Do not include long-term valuation methods or fundamental analysis that are not relevant for a one-week horizon.
+
+- **Introduction and Conclusion:** In these sections, explicitly outline the expected short-term return and provide clear Buy/Sell/Hold recommendations. Use high-level analyses based on the reliable data sources noted earlier. Avoid general recommendations or frameworks for generating recommendations.
+
+- **Format Adherence:** Strictly adhere to the format provided below.
+
+- **Data Presentation:** Include **maximum data in tables** wherever possible to make the analysis easy to use. Ensure that all financial metrics, technical indicators, comparisons, and analyses are presented in tables with clear headings and labels.
+
+- **Comprehensive Metrics:** Incorporate technical indicators and trading signals such as **Relative Strength Index (RSI)**, **Moving Averages (MA)**, **Moving Average Convergence Divergence (MACD)**, **Volume Analysis**, **Bollinger Bands**, **Stochastic Oscillator**, **Pivot Points**, **Support and Resistance Levels**, and other relevant ultra-short-term indicators.
+
+- **Actual Names:** When referencing competitors, analyst firms, or any entities, use the actual names instead of placeholders.
+
+- **Stock Price Analysis:** Include an analysis of very recent price movements, intraday trends, high-frequency trading signals, and any immediate events that may impact the stock price in the next week.
+
+- **Evaluation and Scoring:**
+  - Assign numerical values to evaluations: **Positive = +1**, **Neutral = 0**, **Negative = -1**.
+  - Apply these scores to all measurable items in the tables.
+  - **Calculation of Confidence Level:**
+    - **Total Score:** Sum all the individual scores from each evaluation.
+    - **Maximum Possible Score:** Total number of evaluations multiplied by +1.
+    - **Confidence Percentage:** Calculate the percentage confidence in the stock using the formula:
+
+      \[
+      \text{Confidence Percentage} = \left( \frac{\text{Total Score} + \text{Maximum Possible Score}}{2 \times \text{Maximum Possible Score}} \right) \times 100\%
+      \]
+
+      This scales the confidence percentage between 0% and 100%.
+
+    - **Interpretation:**
+      - **Confidence Percentage > 66%:** Strong confidence (**Buy**).
+      - **Confidence Percentage between 33% and 66%:** Moderate confidence (**Hold**).
+      - **Confidence Percentage < 33%:** Low confidence (**Sell**).
+    - Apply the best possible reasoning to interpret the confidence percentage and conclude whether \<Company Name\> is a good ultra-short-term investment opportunity.
+
+---
+
+**Format:**
+
+### **Introduction:**
+
+Provide a brief introduction of \<Company Name\>, highlighting its recent performance and relevance for a one-week investment.
+
+---
+
+### **Step 1: Market Overview**
+
+#### **1.1 Overall Market Sentiment**
+
+- **Summary:**
+  - Describe the current market sentiment (bullish, bearish, or neutral) based on indices performance, economic data releases, and geopolitical events that could affect the market in the next week.
+- **Evaluation:**
+  - Assess the market sentiment as **Positive (+1)**, **Neutral (0)**, or **Negative (-1)**.
+- **Score:** Record the assigned score.
+
+#### **1.2 Sector Performance**
+
+- **Summary:**
+  - Discuss how the sector in which \<Company Name\> operates is performing in the ultra-short term, considering sector indices and recent sector news.
+- **Evaluation:**
+  - Assess the sector performance as **Positive (+1)**, **Neutral (0)**, or **Negative (-1)**.
+- **Score:** Record the assigned score.
+
+---
+
+### **Step 2: Technical Analysis**
+
+#### **2.1 Price Trend Analysis**
+
+- **Summary:**
+  - Analyze price movements over the past week and intraday patterns.
+  - Identify key support and resistance levels for the upcoming week.
+- **Evaluation:**
+  - Determine if the price trend is **Positive (+1)** (uptrend), **Neutral (0)** (sideways), or **Negative (-1)** (downtrend).
+- **Score:** Record the assigned score.
+
+#### **2.2 Key Technical Indicators**
+
+Provide a table of technical indicators:
+
+| **Indicator**                 | **Current Value**     | **Signal**                   | **Evaluation**            | **Score** |
+|-------------------------------|-----------------------|------------------------------|---------------------------|-----------|
+| **Relative Strength Index (RSI)** | X (e.g., 70/30)       | Overbought/Oversold/Neutral    | Positive/Neutral/Negative | +1/0/-1   |
+| **Moving Average (5-day)**    | X (Price)            | Above/Below Price            | Positive/Neutral/Negative | +1/0/-1   |
+| **Moving Average (10-day)**   | X (Price)            | Above/Below Price            | Positive/Neutral/Negative | +1/0/-1   |
+| **MACD**                      | X (Value)            | Bullish/Bearish Crossover    | Positive/Neutral/Negative | +1/0/-1   |
+| **Volume Trend (Daily)**      | Increasing/Decreasing | Indicates Strength/Weakness  | Positive/Neutral/Negative | +1/0/-1   |
+| **Bollinger Bands**           | Price Near Upper/Lower Band | Potential Breakout/Reversal | Positive/Neutral/Negative | +1/0/-1   |
+| **Stochastic Oscillator**     | X (%)                | Overbought/Oversold          | Positive/Neutral/Negative | +1/0/-1   |
+| **Pivot Points**              | Calculated Levels    | Near Support/Resistance      | Positive/Neutral/Negative | +1/0/-1   |
+
+- **Total Score for Technical Indicators:** Sum of the scores from the table.
+
+---
+
+### **Step 3: Immediate Fundamental Catalysts**
+
+#### **3.1 Recent News and Events**
+
+- **Summary:**
+  - Highlight any very recent news (e.g., last few days) that could impact the stock in the next week, such as earnings releases, management changes, mergers/acquisitions, product launches, or legal issues.
+- **Evaluation:**
+  - Assess the news/events as **Positive (+1)**, **Neutral (0)**, or **Negative (-1)**.
+- **Score:** Record the assigned score.
+
+#### **3.2 Upcoming Events Within the Week**
+
+- **Summary:**
+  - Identify any scheduled events within the next week that could affect the stock price (e.g., earnings announcements, investor conferences, ex-dividend dates, regulatory decisions).
+- **Evaluation:**
+  - Assess the potential impact as **Positive (+1)**, **Neutral (0)**, or **Negative (-1)**.
+- **Score:** Record the assigned score.
+
+---
+
+### **Step 4: Market Sentiment and Order Flow**
+
+#### **4.1 Order Book Analysis**
+
+- **Summary:**
+  - Analyze the current order book for \<Company Name\>, noting any large buy or sell orders that could influence the stock price.
+- **Evaluation:**
+  - Assess the order flow as **Positive (+1)** (buy-side pressure), **Neutral (0)**, or **Negative (-1)** (sell-side pressure).
+- **Score:** Record the assigned score.
+
+#### **4.2 Short Interest and Options Activity**
+
+- **Short Interest:**
+  - Discuss the current level of short interest in the stock.
+- **Options Activity:**
+  - Analyze recent options trading activity for signs of bullish or bearish sentiment.
+- **Evaluation:**
+  - Assess the combined impact as **Positive (+1)**, **Neutral (0)**, or **Negative (-1)**.
+- **Score:** Record the assigned score.
+
+---
+
+### **Step 5: Comparative Analysis**
+
+#### **5.1 Peer Comparison**
+
+Provide a table comparing \<Company Name\> with key competitors for the one-week period:
+
+| **Metric**                      | **\<Company Name\>** | **Competitor A** | **Competitor B** | **Evaluation**            | **Score** |
+|---------------------------------|----------------------|------------------|------------------|---------------------------|-----------|
+| **Price Change (1 Week)**       | X%                   | Y%               | Z%               | Positive/Neutral/Negative | +1/0/-1   |
+| **Volume Change (1 Week)**      | X%                   | Y%               | Z%               | Positive/Neutral/Negative | +1/0/-1   |
+| **RSI**                         | X                    | Y                | Z                | Positive/Neutral/Negative | +1/0/-1   |
+| **Analyst Recommendations**     | X (e.g., Buy/Hold/Sell)| Y                | Z                | Positive/Neutral/Negative | +1/0/-1   |
+
+- **Total Score for Peer Comparison:** Sum of the scores from the table.
+
+#### **5.2 Analyst Sentiment**
+
+- **Summary:**
+  - Summarize any recent analyst updates or target price changes relevant for the one-week horizon.
+- **Evaluation:**
+  - Assess the analyst sentiment as **Positive (+1)**, **Neutral (0)**, or **Negative (-1)**.
+- **Score:** Record the assigned score.
+
+---
+
+### **Step 6: Risk Assessment**
+
+#### **6.1 Short-Term Risks**
+
+- **Identify Risks:**
+  - List potential risks that could affect the stock price in the next week, such as expected economic data releases, geopolitical events, or company-specific issues.
+- **Evaluation:**
+  - Assess each risk's potential impact as **Negative (-1)**, **Neutral (0)**, or **Positive (+1)** (if any risk factors are mitigating).
+- **Score:** Sum the scores for all risks (note that risks typically contribute negative scores).
+
+---
+
+### **Step 7: Final Evaluation**
+
+#### **7.1 Score Summary**
+
+Provide a table summarizing all scores:
+
+| **Section**                           | **Score** |
+|---------------------------------------|-----------|
+| **Overall Market Sentiment**          | +1/0/-1   |
+| **Sector Performance**                | +1/0/-1   |
+| **Price Trend Analysis**              | +1/0/-1   |
+| **Technical Indicators**              | Total from Section 2.2 |
+| **Recent News and Events**            | +1/0/-1   |
+| **Upcoming Events Within the Week**   | +1/0/-1   |
+| **Order Book Analysis**               | +1/0/-1   |
+| **Short Interest and Options Activity** | +1/0/-1 |
+| **Peer Comparison**                   | Total from Section 5.1 |
+| **Analyst Sentiment**                 | +1/0/-1   |
+| **Risk Assessment**                   | Sum of Risk Scores |
+| **Total Score**                       | **Total Sum** |
+
+#### **7.2 Confidence Calculation**
+
+- **Total Number of Evaluations (N):** Count of all individual evaluations made.
+- **Maximum Possible Score:** \( \text{N} \times (+1) \)
+- **Total Score:** Sum of all individual scores.
+- **Confidence Percentage:**
+
+  \[
+  \text{Confidence Percentage} = \left( \frac{\text{Total Score} + \text{Maximum Possible Score}}{2 \times \text{Maximum Possible Score}} \right) \times 100\%
+  \]
+
+#### **7.3 Interpretation**
+
+- **Confidence Percentage > 66%:** Strong confidence (**Buy**)
+- **Confidence Percentage between 33% and 66%:** Moderate confidence (**Hold**)
+- **Confidence Percentage < 33%:** Low confidence (**Sell**)
+
+- **Final Recommendation:**
+  - Based on the confidence percentage, provide a clear **Buy**, **Hold**, or **Sell** recommendation for the next week.
+  - **Expected Return:** Estimate the potential percentage gain or loss.
+
+---
+
+### **Conclusion**
+
+- **Summary of Key Findings:**
+  - Bullet-point summary of the most significant factors influencing the recommendation.
+- **Final Recommendation:**
+  - Restate the Buy/Hold/Sell recommendation with a brief rationale.
+
+---
+
+### **Monitoring Plan**
+
+- **Activities:**
+  - Outline specific monitoring activities to track the stock over the next week, such as daily technical analysis updates, news monitoring, and order flow analysis.
+- **Frequency:**
+  - Specify that each activity should be performed daily or even multiple times per day as appropriate.
+- **Tools/Resources:**
+  - Recommend tools or resources for ongoing analysis (e.g., real-time stock alerts, financial news platforms, trading software with live data feeds, technical analysis tools).
+
+---
+
+**Note:** Ensure all measurable items include evaluations and scores, and apply the best possible reasoning for calculations. This template is designed to assess any stock for ultra-short-term investment potential within a one-week period, providing a quantitative confidence level to support the final recommendation. Include all possible knowledge and logic relevant to a one-week investment horizon to make the analysis comprehensive and robust.
